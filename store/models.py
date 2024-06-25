@@ -6,6 +6,7 @@ class Category(Model):
 
     class Meta:
         ordering = ['title']
+        verbose_name_plural = "categories"
 
     def __repr__(self):
         return f'<title: {self.title}>'
