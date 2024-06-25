@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # MY_APPS
+    # Externally installed apps
+    'django_dump_load_utf8',
+
+    # My_apps
     'store',
 ]
 
