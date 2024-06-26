@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratory glass - categories</title>
+</head>
+<body>
+<h1>You can choose products from the following categories:</h1>
+<ul>
+{% for category in categories %}
+    <li><a href = "{% url 'category' category.id %}">{{category}}</a></li>
+{% endfor %}
+</ul>
+</body>
+<footer>
+    <div><a href = "{% url 'products_and_categories' %}">List of products sorted by categories</a></div>
+    <div><a href = "{% url 'home' %}">Home</a></div>
+</footer>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products overview including categories</title>
+</head>
+<body>
+<h1>Overview of all our products and categories</h1>
+<ul>
+  {% for category in categories %}
+  <li><a href = "{% url 'category' category.id %}">{{ category.title }}</a>
+  <ul>
+    {% for product in products %}
+      {% if product.category == category %}
+    <li><a href = "{% url 'product' product.id %}">{{ product.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  </li>
+  {% endfor %}
+</ul>
+</body>
+<footer>
+    <div><a href = "{% url 'categories' %}">List of categories</a></div>
+    <div><a href = "{% url 'products' %}">All the products ordered alphabetically</a></div>
+    <div><a href = "{% url 'home' %}">Home</a></div>
+</footer>
+</html>

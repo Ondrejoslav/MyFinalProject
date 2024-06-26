@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products overview</title>
+</head>
+<body>
+<h1>Overview of all our products</h1>
+<h3>(alphabetical ordering)</h3>
+<ul>
+{% for product in products %}
+    <li><a href = "{% url 'product' product.id %}">{{ product.title }}</a>
+        <a href = "{% url 'category' product.category.id %}">({{product.category}})</a>
+    </li>
+{% endfor %}
+</ul>
+</body>
+<footer>
+    <div><a href = "{% url 'categories' %}">List of categories</a></div>
+    <div><a href = "{% url 'products_and_categories' %}">List of products sorted by categories</a></div>
+    <div><a href = "{% url 'home' %}">Home</a></div>
+</footer>
+</footer>
+</html>

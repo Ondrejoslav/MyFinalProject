@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product overview | {{ product.title }}</title>
+</head>
+<body>
+<h1>{{ product.title }}</h1>
+<div>{{ product.description }}</div>
+<div>price: {{ product.price }} £</div>
+<div>Stock: {{ product.stock }} pcs</div>
+</body>
+<footer>
+    <div><a href = "{% url 'category' product.category.id %}">Category '{{product.category.title}}'</a></div>
+    <div><a href = "{% url 'categories' %}">List of categories</a></div>
+    <div><a href = "{% url 'products_and_categories' %}">List of products sorted by categories</a></div>
+    <div><a href = "{% url 'home' %}">Home</a></div>
+</footer>
+</html>

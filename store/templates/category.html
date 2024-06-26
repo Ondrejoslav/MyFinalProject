@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{category.title}}</title>
+</head>
+<body>
+<h1>Here is a list of products from category '{{category.title}}'</h1>
+<ul>
+{% for product in products %}
+    <li><a href = "{% url 'product' product.id %}">{{ product.title }}</a></li>
+{% endfor %}
+</ul>
+</body>
+<footer>
+    <div><a href = "{% url 'categories' %}">List of categories</a></div>
+    <div><a href = "{% url 'products_and_categories' %}">List of products sorted by categories</a></div>
+    <div><a href = "{% url 'home' %}">Home</a></div>
+</footer>
+</html>
