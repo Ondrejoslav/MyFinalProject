@@ -29,7 +29,7 @@ class Product(Model):
         return f'<title: {self.title}>'
 
     def __str__(self):
-        return self.title
+        return f'{self.title} ({self.category})'
 
 
 class Image(Model):

@@ -1,1 +1,392 @@
-[]
+[
+  {
+    "model": "store.category",
+    "pk": 1,
+    "fields": {
+      "title": "Flasks"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 2,
+    "fields": {
+      "title": "Funnels"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 3,
+    "fields": {
+      "title": "Cylinders"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 4,
+    "fields": {
+      "title": "Tubes"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 5,
+    "fields": {
+      "title": "Beakers"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 6,
+    "fields": {
+      "title": "Bottles"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 7,
+    "fields": {
+      "title": "Condensers"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 1,
+    "fields": {
+      "title": "Round Bottom 2 Neck Jointed Flask 100 ml",
+      "category": 1,
+      "description": "Volume: 100 ml\r\nGround joint: 24/29 (centre),  14/23 (angle)",
+      "price": "29.34",
+      "stock": 20
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 2,
+    "fields": {
+      "title": "Round Bottom 3 Neck Jointed Flask 100 ml",
+      "category": 1,
+      "description": "Volume: 100 ml\r\nGround joints: 19/26 (central), 14/23 (angles)",
+      "price": "30.94",
+      "stock": 30
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 3,
+    "fields": {
+      "title": "Erlenmeyer Jointed Flask 50 ml",
+      "category": 1,
+      "description": "Volume: 50 ml\r\nGround joint: 14/23",
+      "price": "13.74",
+      "stock": 100
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 4,
+    "fields": {
+      "title": "Pear Shaped Jointed Flask 50 ml",
+      "category": 1,
+      "description": "Volume: 50 ml\r\nGround joint: 14/23",
+      "price": "17.80",
+      "stock": 20
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 5,
+    "fields": {
+      "title": "Separating Jointed Funnel",
+      "category": 2,
+      "description": "Volume: 100 ml\r\nGround joint: 19/26",
+      "price": "71.98",
+      "stock": 50
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 6,
+    "fields": {
+      "title": "Beaker 1000 ml",
+      "category": 5,
+      "description": "Product Features: 1000 ml Capacity, 105 mm Diameter, 145 mm Height",
+      "price": "2.12",
+      "stock": 200
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 7,
+    "fields": {
+      "title": "Conical Narrow Neck Flask 250 ml",
+      "category": 1,
+      "description": "Volume: 250 ml\r\nInner neck diameter: 32mm",
+      "price": "1.60",
+      "stock": 300
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 8,
+    "fields": {
+      "title": "Crystallising dish",
+      "category": 5,
+      "description": "Volume: 200 ml\r\nFlat bottom with spout",
+      "price": "2.95",
+      "stock": 200
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 9,
+    "fields": {
+      "title": "Filter Flask 250 ml",
+      "category": 1,
+      "description": "Volume: 250 ml\r\nInner neck diameter: 30mm\r\nHeavy walled with glass sidearm. The arm will fit tubing with a 8mm internal diameter.",
+      "price": "4.65",
+      "stock": 120
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 10,
+    "fields": {
+      "title": "Filter Funnel Short Stem",
+      "category": 2,
+      "description": "Stem length: 55 mm",
+      "price": "1.88",
+      "stock": 120
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 11,
+    "fields": {
+      "title": "Heavy Duty Beaker",
+      "category": 5,
+      "description": "Increased wall thickness. Made to last.",
+      "price": "2.86",
+      "stock": 30
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 12,
+    "fields": {
+      "title": "Heavy Duty Conical Flask 250 ml",
+      "category": 1,
+      "description": "Heavy Duty Erlenmeyer flasks, narrow neck with Graduation.\r\nSuitable Rubber Stoppers: 1159 - Solid 31mm, 1163 - 1 Hole 31mm, 1494 - 2 Hole 31mm",
+      "price": "1.96",
+      "stock": 30
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 13,
+    "fields": {
+      "title": "Measuring Cylinder Hex. Base 100 ml",
+      "category": 3,
+      "description": "White graduations",
+      "price": "2.48",
+      "stock": 120
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 14,
+    "fields": {
+      "title": "Measuring Cylinder Round Base 100 ml",
+      "category": 3,
+      "description": "White graduations",
+      "price": "2.02",
+      "stock": 150
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 15,
+    "fields": {
+      "title": "Reagent Bottle 100 ml Glass Stopper",
+      "category": 6,
+      "description": "Reagent Bottles. Soda Glass/Glass Stopper. Clear, 100ml",
+      "price": "3.76",
+      "stock": 560
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 16,
+    "fields": {
+      "title": "Reagent Bottle 100 ml Wide Neck Glass Stopper",
+      "category": 6,
+      "description": "Academy Reagent Bottle 100ml Wide Neck Glass Stopper",
+      "price": "3.78",
+      "stock": 460
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 17,
+    "fields": {
+      "title": "Reagent Bottle Amber 250 ml",
+      "category": 1,
+      "description": "Amber 250ml (Soda Glass) with glass stopper",
+      "price": "5.58",
+      "stock": 280
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 18,
+    "fields": {
+      "title": "Test Tube with Rim 16x100 mm Box of 100",
+      "category": 4,
+      "description": "Affordable, high quality range of 3.3 Borosilicate glass test and boiling tubes, with rim. High performance tubes with a uniform wall thickness of between 1.00 and 1.2mm.",
+      "price": "29.98",
+      "stock": 40
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 19,
+    "fields": {
+      "title": "Round Bottom Jointed Flask 100 ml 19/26",
+      "category": 1,
+      "description": "Volume: 100 ml\r\nGround joint: 19/26",
+      "price": "14.22",
+      "stock": 250
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 20,
+    "fields": {
+      "title": "Round Bottom Jointed Flask 100 ml 24/29",
+      "category": 1,
+      "description": "Volume: 100 ml\r\nGround joint: 24/29",
+      "price": "12.34",
+      "stock": 250
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 21,
+    "fields": {
+      "title": "Liebig Jointed Condenser 200 mm 14/23",
+      "category": 7,
+      "description": "Length: 200 mm\r\nGround joint: 14/23",
+      "price": "26.38",
+      "stock": 30
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 22,
+    "fields": {
+      "title": "Liebig Jointed Condenser 200 mm 24/29",
+      "category": 7,
+      "description": "Length: 200 mm\r\nGround joint: 24/29",
+      "price": "34.78",
+      "stock": 30
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 23,
+    "fields": {
+      "title": "Separating Jointed Funnel 100 ml 19/26",
+      "category": 2,
+      "description": "Volume: 100 ml\r\nGround joint: 19/26",
+      "price": "71.98",
+      "stock": 20
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 24,
+    "fields": {
+      "title": "Separating Jointed Funnel 250 ml 24/29",
+      "category": 2,
+      "description": "Volume: 250 ml\r\nGround joint: 24/29",
+      "price": "79.18",
+      "stock": 20
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 25,
+    "fields": {
+      "title": "Separating Jointed Funnel 50 ml 19/26",
+      "category": 2,
+      "description": "Volume: 50 ml\r\nGround joint: 19/26",
+      "price": "53.98",
+      "stock": 20
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 26,
+    "fields": {
+      "title": "Beaker 3000 ml",
+      "category": 5,
+      "description": "Volume: 3000 ml",
+      "price": "13.76",
+      "stock": 30
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 27,
+    "fields": {
+      "title": "Beaker 600 ml",
+      "category": 5,
+      "description": "Product Features: 600 ml Capacity, 90 mm Diameter, 125 mm Height",
+      "price": "1.26",
+      "stock": 300
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 28,
+    "fields": {
+      "title": "Beaker 250 ml",
+      "category": 5,
+      "description": "Product Features: 250 ml Capacity, 70 mm Diameter, 95 mm Height",
+      "price": "0.74",
+      "stock": 300
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 29,
+    "fields": {
+      "title": "Beaker 100 ml",
+      "category": 5,
+      "description": "Product Features: 100 ml Capacity, 50 mm Diameter, 70 mm Height",
+      "price": "0.67",
+      "stock": 300
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 30,
+    "fields": {
+      "title": "Beaker 50 ml",
+      "category": 5,
+      "description": "Product Features: 50 ml Capacity, 42 mm Diameter, 60 mm Height",
+      "price": "0.64",
+      "stock": 300
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 31,
+    "fields": {
+      "title": "Beaker 25 ml",
+      "category": 5,
+      "description": "Volume: 25 ml",
+      "price": "0.68",
+      "stock": 200
+    }
+  }
+]
