@@ -15,5 +15,11 @@ to be stored in the database, stock counts updated accordingly and the shopping 
 In the opposite scenario, when the shopping cart is not checked out within a certain time, 
 deleting its content and refreshing the stock counts to the original values.
 
+Forms can be defined either in views.py or in another (independent) file like forms.py
+
+Consider using 'edit emojis' for updating and deleting forms
+
 Installing 'Pillow' module to enable working with ImageField
+
+
 
