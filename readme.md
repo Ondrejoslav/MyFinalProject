@@ -26,5 +26,5 @@ the Django project to run from.
 In production, 'ALLOWED_HOSTS' should be filled in with a proper domain name:
 ALLOWED_HOSTS = ['yourdomain.com']
 
-
+If possible, discuss the issues associated with styling of home.html
 

@@ -15,11 +15,12 @@ def categories(request):
 
 
 def category(request, pk):
-    category = Category.objects.get(pk=pk)
-    products = Product.objects.filter(category=category)
-    context = {'category': category, 'products': products}
-    return render(request, 'category.html', context)
-
+    if Category.objects.filter(id=pk).exists():
+        category = Category.objects.get(pk=pk)
+        products = Product.objects.filter(category=category)
+        context = {'category': category, 'products': products}
+        return render(request, 'category.html', context)
+    return categories(request)
 
 def products(request):
     products = Product.objects.all()
@@ -35,6 +36,8 @@ def products_and_categories(request):
 
 
 def product(request, pk):
-    product = Product.objects.get(pk=pk)
-    context = {'product': product}
-    return render(request, 'product.html', context)
+    if Product.objects.filter(id=pk).exists():
+        product = Product.objects.get(pk=pk)
+        context = {'product': product}
+        return render(request, 'product.html', context)
+    return products(request)
