@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Home page | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+#a {
+  padding: 20px;
+  border: 3px solid #888888;
+}
+.c {
+  display: inline;
+  margin: 0px 20px;
+}
+#d, #e {
+  font-size: 20px;
+}
+{% endblock %}
+
+
+{% block content %}
+<h2 class='center' id='a'>Welcome to our laboratory glassware store!</h2>
+{% endblock %}
+
+
+{% block content_2 %}
+<div class='center'>
+<span class='c'><a id='d' href = "{% url 'categories' %}" class="btn btn-primary" >
+  These are categories of products we specialize in</a></span>
+<span class='c'><a id='e' href = "{% url 'products_and_categories' %}" class="btn btn-primary">
+  Check availability of the products you are looking for</a></span>
+</div>
+{% endblock %}

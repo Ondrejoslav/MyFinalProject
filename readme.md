@@ -21,5 +21,10 @@ Consider using 'edit emojis' for updating and deleting forms
 
 Installing 'Pillow' module to enable working with ImageField
 
+In settings.py, when DEBUG = False, Django requires you to specify the hosts you will allow
+the Django project to run from.
+In production, 'ALLOWED_HOSTS' should be filled in with a proper domain name:
+ALLOWED_HOSTS = ['yourdomain.com']
+
 
 

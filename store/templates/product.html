@@ -1,19 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Product overview | {{ product.title }}</title>
-</head>
-<body>
-<h1>{{ product.title }}</h1>
-<div>{{ product.description }}</div>
-<div>price: {{ product.price }} £</div>
-<div>Stock: {{ product.stock }} pcs</div>
-</body>
-<footer>
-    <div><a href = "{% url 'category' product.category.id %}">Category '{{product.category.title}}'</a></div>
-    <div><a href = "{% url 'categories' %}">List of categories</a></div>
-    <div><a href = "{% url 'products_and_categories' %}">List of products sorted by categories</a></div>
-    <div><a href = "{% url 'home' %}">Home</a></div>
-</footer>
-</html>
+{% extends "base.html" %}
+
+
+{% block title %}
+{{ product.title }} | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+.a {
+  font-size: 30px;
+  margin: 30px;
+}
+#b {
+  background-color: #999999;
+}
+.c{
+  background-color: #cccccc;
+}
+#d {
+  font-size: 30px;
+}
+{% endblock %}
+
+
+{% block content %}
+<h1 class='center'>{{ product.title }}</h1>
+<div class='a'><span id='b'>Product features</span><br>{{ product.description }}</div>
+<div class='a'><span class='c'>Price:</span> {{ product.price }} £</div>
+<div class='a'><span class='c'>Stock:</span> {{ product.stock }} pcs</div>
+{% endblock %}
+
+
+{% block content_2 %}
+<div id='d'>Back to category:  <a class='blacken' href = "{% url 'category' product.category.id %}">{{product.category.title}}</a></div>
+<!--
+<div><a href = "{% url 'categories' %}">List of categories</a></div>
+<div><a href = "{% url 'products_and_categories' %}">List of products sorted by categories</a></div>
+<div><a href = "{% url 'home' %}">Home</a></div>
+-->
+{% endblock %}
