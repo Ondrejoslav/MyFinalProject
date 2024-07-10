@@ -28,3 +28,5 @@ ALLOWED_HOSTS = ['yourdomain.com']
 
 If possible, discuss the issues associated with styling of home.html
 
+In base.html, what is the purpose of {% if not view.is_popup %}{% endif %} enclosing the <nav> section?
+

@@ -87,3 +87,8 @@ class OrderProduct(Model):
     def empty_cart(self):
         cart = {}
         return cart
+
+    def add_number(self, number):
+        x=0
+        x+=number
+        return x
