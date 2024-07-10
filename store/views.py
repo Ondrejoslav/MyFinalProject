@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from store.models import Category, Product
+from store.models import *
 
 
 def home(request):

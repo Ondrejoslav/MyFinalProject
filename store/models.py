@@ -78,3 +78,12 @@ class OrderProduct(Model):
     def __str__(self):
         return f'{self.order}, item: {self.product}, quantity: {self.quantity}'
 
+    def calculate_total(self):
+        total = 0
+        for item in {cart}:
+            total += item.price * cart[item]
+        return total
+
+    def empty_cart(self):
+        cart = {}
+        return cart
