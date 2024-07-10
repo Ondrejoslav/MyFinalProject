@@ -16,6 +16,7 @@ Including another URLconf
 from itertools import product
 
 from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.urls import path
 
 from store.views import *
@@ -31,4 +32,6 @@ urlpatterns = [
     path('products_and_categories/', products_and_categories, name='products_and_categories'),
     path('product/<pk>/', product, name='product'),
     path('customer/create/', CustomerCreateView.as_view(), name='register_customer'),
+
+    path('accounts/login/', LoginView.as_view(), name='login'),
 ]
