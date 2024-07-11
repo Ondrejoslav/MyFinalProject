@@ -17,8 +17,9 @@ from itertools import product
 
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
-from django.urls import path
+from django.urls import path, include
 
+from accounts.views import *
 from store.views import *
 from store.forms import *
 
@@ -33,5 +34,10 @@ urlpatterns = [
     path('product/<pk>/', product, name='product'),
     path('customer/create/', CustomerCreateView.as_view(), name='register_customer'),
 
-    path('accounts/login/', LoginView.as_view(), name='login'),
+    # path('accounts/login/', LoginView.as_view(), name='login'),
+    path('accounts/login/', SubmittableLoginView.as_view(), name='login'), # customized login view
+    path('accounts/signup/', SignUpView.as_view(), name='signup'), # customized signup view
+    # path('accounts/profile/', SignUpView.as_view(), name='profile'),
+    path('accounts/password_change/', SubmittablePasswordChangeView.as_view(), name='password_change'), # customized password change view
+    path('accounts/', include('django.contrib.auth.urls')), # django default views
 ]

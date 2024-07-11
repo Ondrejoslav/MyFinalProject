@@ -1,6 +1,6 @@
 from concurrent.futures._base import LOGGER
 
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.forms import *
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -18,7 +18,7 @@ class CustomerModelForm(ModelForm):
         return initial_name.strip().capitalize()
 
 
-class CustomerCreateView(CreateView):
+class CustomerCreateView(LoginRequiredMixin, CreateView):
     template_name = 'form.html'
     form_class = CustomerModelForm
     success_url = reverse_lazy('home')
