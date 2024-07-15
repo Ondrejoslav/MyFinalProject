@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Profile overview | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+.a {
+  text-decoration: underline;
+}
+{% endblock %}
+
+
+{% block content %}
+<h3>Your contact and billing details:</h3>
+<div><span class="a">First name</span>: {{ user.first_name }} {{ user.last_name }}</div>
+<div><span class="a">E-mail</span>: {{ user.email }}</div>
+<div><span class="a">Phone</span>: {{ user.has_profile.phone }}</div>
+<div><span class="a">Day of birth</span>: {{ user.has_profile.date_of_birth }}</div>
+<div><span class="a">Billing address</span>: {{ user.has_profile.billing_address }}</div>
+{% endblock %}
+
+
+{% block content_2 %}
+<div>Go to the list of <a href="{% url 'users' %}">profiles</a></div>
+{% endblock %}

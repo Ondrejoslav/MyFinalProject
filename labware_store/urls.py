@@ -38,6 +38,8 @@ urlpatterns = [
     path('accounts/login/', SubmittableLoginView.as_view(), name='login'), # customized login view
     path('accounts/signup/', SignUpView.as_view(), name='signup'), # customized signup view
     # path('accounts/profile/', SignUpView.as_view(), name='profile'),
+    path('accounts/users/', users, name='users'),
+    path('accounts/user/<pk>/', user, name='user'),
     path('accounts/password_change/', SubmittablePasswordChangeView.as_view(), name='password_change'), # customized password change view
     path('accounts/', include('django.contrib.auth.urls')), # django default views
 ]

@@ -1,6 +1,11 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from concurrent.futures._base import LOGGER
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+from store.forms import CustomerModelForm
 from store.models import *
 
 
@@ -22,6 +27,7 @@ def category(request, pk):
         return render(request, 'category.html', context)
     return categories(request)
 
+
 def products(request):
     products = Product.objects.all()
     context = {'products': products}
@@ -41,3 +47,14 @@ def product(request, pk):
         context = {'product': product}
         return render(request, 'product.html', context)
     return products(request)
+
+
+class CustomerCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'form.html'
+    form_class = CustomerModelForm
+    success_url = reverse_lazy('home')
+
+    def form_invalid(self, form):
+        LOGGER.warning('User provided invalid data.')
+        return super().form_invalid(form)
+
