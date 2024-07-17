@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Your cart | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+.container{ width:100%; }
+.align-left{ float: left;width:50%; }
+.align-right{ float: right;width:50%; }
+{% endblock %}
+
+
+{% block content %}
+<h1>The content of your cart is following:</h1>
+<ul>
+    {% for profile_product in profile_products %}
+    <li><div class='container'>
+            <div class="align-left">product:
+                <a href="{% url 'product' profile_product.product.id %}">{{profile_product.product.title}}</a>,
+                quantity: {{profile_product.quantity}}
+            </div>
+            <div class="align-right">
+                <a href="{% url 'update_item' profile_product.id %}" class="btn btn-primary"> change quantity</a>
+                <a href="{% url 'delete_item' profile_product.id %}" class="btn btn-primary">remove this item</a>
+            </div>
+    </div></li>
+    {% endfor %}
+</ul>
+<div><b>Total = {{total}} GBP</b></div>
+{% endblock %}
+
+
+{% block content_2 %}
+<div><a href="{% url 'products_and_categories' %}">Back to the list of our products</a></div>
+{% endblock %}

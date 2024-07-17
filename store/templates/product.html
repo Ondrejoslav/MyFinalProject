@@ -28,6 +28,7 @@
 <div class='a'><span id='b'>Product features</span><br>{{ product.description }}</div>
 <div class='a'><span class='c'>Price:</span> {{ product.price }} £</div>
 <div class='a'><span class='c'>Stock:</span> {{ product.stock }} pcs</div>
+<div><a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to cart</a></div>
 {% endblock %}
 
 

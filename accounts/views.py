@@ -1,15 +1,21 @@
+from concurrent.futures._base import LOGGER
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, PasswordChangeView
+from django.core.exceptions import PermissionDenied
 from django.db.transaction import atomic
-from django.forms import DateField, CharField, Textarea, NumberInput, ModelForm
+from django.forms import DateField, CharField, Textarea, NumberInput, ModelForm, IntegerField, Form
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, FormView, UpdateView, DeleteView
 
-from accounts.models import Profile
+from accounts.forms import ProfileProductModelForm
+from accounts.models import Profile, Order, ProfileProduct
+from store.models import Product
+from store.views import product
 
 
 # Create your views here.
@@ -59,15 +65,51 @@ def users(request): #TODO: Change functional view for class-based view
 
 
 @ login_required
-def user(request, pk):
-    if User.objects.filter(id=pk).exists():
-        user = User.objects.get(pk=pk)
-        context = {'user': user}
-        return render(request, 'profile_detail.html', context)
-    return users(request)
+def user(request):
+    return render(request, 'profile_detail.html')
 
 
-# class UserModelForm(ModelForm):
-#     class Meta:
-#         model = User
-#         fields = '__all__'
+@ login_required
+def add_to_cart(request, pk):
+    profile = Profile.objects.get(user=request.user)
+    product = Product.objects.get(pk=pk)
+    quantity = 1
+    profile_product = ProfileProduct(profile=profile, product=product, quantity=quantity)
+    profile_product.save()
+    context={'profile_product': profile_product}
+    return render(request, 'item.html', context)
+
+
+class ItemUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'form.html'
+    model = ProfileProduct
+    form_class = ProfileProductModelForm
+    success_url = reverse_lazy('your_cart')
+
+    def form_invalid(self, form):
+        LOGGER.warning('User provided invalid data while updating a creator.')
+        return super().form_invalid(form)
+
+
+class ItemDeleteView(DeleteView):
+    template_name = 'item_confirm_delete.html'
+    model = ProfileProduct
+    success_url = reverse_lazy('cart')
+
+
+@login_required
+def your_cart(request):
+    profile = Profile.objects.get(user=request.user)
+    profile_products = ProfileProduct.objects.filter(profile=profile)
+    total = 0
+    for profile_product in profile_products:
+        total += profile_product.product.price * profile_product.quantity
+    context = {'profile_products': profile_products, 'total': total}
+    return render(request, 'cart.html', context)
+
+
+@ login_required
+def your_orders(request):
+    orders = Order.objects.filter(profile__user=request.user)
+    context = {'orders': orders}
+    return render(request, 'orders.html', context)

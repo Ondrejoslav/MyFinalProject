@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+Chosen item | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete item "{{ object }}" from the shopping cart?</p>
+    <input type="submit" value="Submit" class="btn btn-danger">
+</form>
+{% endblock %}
+
+
+{% block content_2 %}
+{% endblock %}

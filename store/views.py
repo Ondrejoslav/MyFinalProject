@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
-from store.forms import CustomerModelForm
+# from store.forms import CustomerModelForm
 from store.models import *
 
 
@@ -49,12 +49,12 @@ def product(request, pk):
     return products(request)
 
 
-class CustomerCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'form.html'
-    form_class = CustomerModelForm
-    success_url = reverse_lazy('home')
-
-    def form_invalid(self, form):
-        LOGGER.warning('User provided invalid data.')
-        return super().form_invalid(form)
-
+# class CustomerCreateView(LoginRequiredMixin, CreateView):
+#     template_name = 'form.html'
+#     form_class = CustomerModelForm
+#     success_url = reverse_lazy('home')
+#
+#     def form_invalid(self, form):
+#         LOGGER.warning('User provided invalid data.')
+#         return super().form_invalid(form)
+#

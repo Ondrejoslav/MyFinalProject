@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+Your orders | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block content %}
+<h3>This is the list of your orders:</h3>
+<div>{{user.first_name}}</div>
+<ul>
+    {% for order in orders %}
+    <li>{{order}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+{% block content_2 %}
+
+{% endblock %}

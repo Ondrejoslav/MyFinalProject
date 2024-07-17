@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Chosen item | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block content %}
+<h1>You are adding this item to your shopping cart:</h1>
+<div>title: {{profile_product.product}}, quantity: {{profile_product.quantity}}</div>
+<div><a href="{% url 'update_item' profile_product.id %}">Change the quantity</div>
+{% endblock %}
+
+
+{% block content_2 %}
+{% endblock %}

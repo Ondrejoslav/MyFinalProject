@@ -15,10 +15,18 @@ h1 = {
 {% block content %}
 <h1>List of users:</h1>
 <ul>
-    {% for user in users %}
-    {% if user.username != 'admin' %}
-    <li><a href="{% url 'user' user.id %}">{{ user.first_name }} {{ user.last_name }}</a></li>
-    {% endif %}
+    {% for use in users %}
+        {% if use.username != 'admin' %}
+            <li>
+                {% if use.id == user.id %}
+                    <a href="{% url 'user' %}">
+                {% endif %}
+                {{ use.first_name }} {{ use.last_name }}
+                {% if use.id == user.id %}
+                    </a>
+                {% endif %}
+            </li>
+        {% endif %}
     {% endfor %}
 </ul>
 {% endblock %}

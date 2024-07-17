@@ -32,14 +32,19 @@ urlpatterns = [
     path('products/', products, name='products'),
     path('products_and_categories/', products_and_categories, name='products_and_categories'),
     path('product/<pk>/', product, name='product'),
-    path('customer/create/', CustomerCreateView.as_view(), name='register_customer'),
+    # path('customer/create/', CustomerCreateView.as_view(), name='register_customer'),
 
     # path('accounts/login/', LoginView.as_view(), name='login'),
     path('accounts/login/', SubmittableLoginView.as_view(), name='login'), # customized login view
     path('accounts/signup/', SignUpView.as_view(), name='signup'), # customized signup view
     # path('accounts/profile/', SignUpView.as_view(), name='profile'),
     path('accounts/users/', users, name='users'),
-    path('accounts/user/<pk>/', user, name='user'),
+    path('accounts/user/', user, name='user'),
     path('accounts/password_change/', SubmittablePasswordChangeView.as_view(), name='password_change'), # customized password change view
     path('accounts/', include('django.contrib.auth.urls')), # django default views
+    path('accounts/add_to_cart/<pk>/', add_to_cart, name='add_to_cart'),
+    path('accounts/update_item/<pk>/', ItemUpdateView.as_view(), name='update_item'),
+    path('accounts/delete_item/<pk>/', ItemDeleteView.as_view(), name='delete_item'),
+    path('accounts/your_cart/', your_cart, name='your_cart'),
+    path('accounts/your_orders/', your_orders, name='your_orders'),
 ]
