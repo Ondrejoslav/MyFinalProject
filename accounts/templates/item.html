@@ -12,8 +12,12 @@ Chosen item | Laboratory Glassware Store
 
 {% block content %}
 <h1>You are adding this item to your shopping cart:</h1>
-<div>title: {{profile_product.product}}, quantity: {{profile_product.quantity}}</div>
-<div><a href="{% url 'update_item' profile_product.id %}">Change the quantity</div>
+<div>title: {{user_product.product}}, quantity: {{user_product.quantity}}</div>
+<div class="container">
+        <a href="{% url 'update_item' user_product.id %}" class="btn btn-primary">Change quantity</a>
+        <a href="{% url 'your_cart' %}" class="btn btn-success">Confirm and Continue</a>
+        <a href="{% url 'discard_item' user_product.id %}" class="btn btn-secondary">Back</a>
+</div>
 {% endblock %}
 
 

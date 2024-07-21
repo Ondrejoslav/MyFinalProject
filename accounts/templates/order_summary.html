@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+Order summary | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block content %}
+<div><b>Here is the summary of your order nr. {{ order.id }}:</b></div>
+<ul>
+    {% for order_product in order_products %}
+    <li>item: {{order_product.product.title}}, price/pc: {{order_product.product.price}} £,
+        quantity: {{order_product.quantity}} pcs</li>
+    {% endfor %}
+</ul>
+<div>The order {{order.id}} was created on {{order.date_of_creation|date:"d-m-Y"}} at
+    {{order.date_of_creation|date:"H:i:s"}} and is worth of {{order.total}} £</div>
+<div>Delivery address: {{order.delivery_address}}</div>
+<div><b>Payment details</b></div>
+<div>Amount: {{ order.total }} £</div>
+<div>bank account: 18448885/455</div>
+<div>Id of the payment: {{ order.id }}</div>
+<div>Deadline: {{ payment_deadline|date:"d-m-Y" }}</div>
+{% endblock %}
+
+
+{% block content_2 %}
+
+{% endblock %}

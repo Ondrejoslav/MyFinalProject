@@ -10,11 +10,12 @@ Your orders | Laboratory Glassware Store
 
 
 {% block content %}
-<h3>This is the list of your orders:</h3>
-<div>{{user.first_name}}</div>
+<div>Dear {{user.first_name}}, this is the list of your orders:</div>
 <ul>
     {% for order in orders %}
-    <li>{{order}}</li>
+    <li><a href="{% url 'order_summary' order.id %}">Id: {{order.id}}, date and time of creation:
+        {{order.date_of_creation|date:"d-m-Y"}} at {{order.date_of_creation|date:"H:i:s"}},
+        worth of: {{order.total}} £</a></li>
     {% endfor %}
 </ul>
 {% endblock %}

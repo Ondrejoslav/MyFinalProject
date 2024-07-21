@@ -7,32 +7,42 @@ Your cart | Laboratory Glassware Store
 
 
 {% block style %}
-.container{ width:100%; }
-.align-left{ float: left;width:50%; }
-.align-right{ float: right;width:50%; }
+#a {
+  font-size: 20px;
+  margin: 10px;
+}
+#b {
+  margin: 50px 0px 20px 20px;
+  font-size: 25px;
+}
 {% endblock %}
 
 
 {% block content %}
 <h1>The content of your cart is following:</h1>
 <ul>
-    {% for profile_product in profile_products %}
-    <li><div class='container'>
-            <div class="align-left">product:
-                <a href="{% url 'product' profile_product.product.id %}">{{profile_product.product.title}}</a>,
-                quantity: {{profile_product.quantity}}
+    {% for user_product in user_products %}
+    <li>
+            <div id="a">item:
+                <a href="{% url 'product' user_product.product.id %}">{{user_product.product.title}}</a>,
+                price/pc: {{user_product.product.price}} £,   quantity: {{user_product.quantity}} pcs
             </div>
             <div class="align-right">
-                <a href="{% url 'update_item' profile_product.id %}" class="btn btn-primary"> change quantity</a>
-                <a href="{% url 'delete_item' profile_product.id %}" class="btn btn-primary">remove this item</a>
+                <a href="{% url 'update_item' user_product.id %}" class="btn btn-outline-primary"> change quantity</a>
+                <a href="{% url 'remove_item_from_cart' user_product.id %}" class="btn btn-outline-danger">
+                    remove this item</a>
             </div>
-    </div></li>
+    </li>
     {% endfor %}
 </ul>
-<div><b>Total = {{total}} GBP</b></div>
+<div id="b"><b>Total = {{total}} £</b></div>
+<div>
+        <a href="{% url 'products_and_categories' %}" class="btn btn-primary">Add product</a>
+        <a href="{% url 'place_order' %}" class="btn btn-success">Place order</a>
+        <a href="{% url 'cart_confirm_delete' %}" class="btn btn-danger">Empty cart</a>
+</div>
 {% endblock %}
 
 
 {% block content_2 %}
-<div><a href="{% url 'products_and_categories' %}">Back to the list of our products</a></div>
 {% endblock %}

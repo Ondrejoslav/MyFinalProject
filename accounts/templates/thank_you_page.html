@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+Thank you! | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block content %}
+<div>Dear {{user.first_name}} {{user.last_name}}, your order (id = {{ order.id }}) has been successfully placed!</div>
+<div>thank you for shopping with us!</div>
+<div>Have a nice day!</div>
+{% endblock %}

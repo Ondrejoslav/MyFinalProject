@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+Emptying Cart Confirmation | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+.container{ width:100%; }
+.align-left{ float: left;width:50%; }
+.align-right{ float: right;width:50%; }
+{% endblock %}
+
+
+{% block content %}
+<p>Are you sure you want to delete the following content from your shopping cart?</p>
+<ul>
+    {% for user_product in user_products %}
+    <li>{{ user_product.product.title }} ({{ user_product.product.price }}  £/pc) x {{ user_product.quantity }}</li>
+    {% endfor %}
+</ul>
+
+<div class="container">
+    <div class="align-left">
+        <a href="{% url 'empty_cart' %}" class="btn btn-danger">YES</a>
+    </div>
+    <div class="align-right">
+        <a href="{% url 'your_cart' %}" class="btn btn-primary">NO</a>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content_2 %}
+{% endblock %}

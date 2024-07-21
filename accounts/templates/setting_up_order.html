@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+Order set-up | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block content %}
+<div>Is your delivery address the same as your billing address?</div>
+<div>
+    <span><a href="{% url 'order_preview' order.id %}" class="btn btn-primary">Yes</a></span>
+    <span><a href="{% url 'order_set_up' order.id %}" class="btn btn-primary">No</a></span>
+</div>
+<div>
+    <a href="{% url 'your_cart' %}" class="btn btn-warning">I have forgotten something!</a>
+</div>
+{% endblock %}

@@ -5,4 +5,4 @@ from accounts.models import *
 admin.site.register(Profile)
 admin.site.register(Order)
 admin.site.register(OrderProduct)
-admin.site.register(ProfileProduct)
+admin.site.register(UserProduct)

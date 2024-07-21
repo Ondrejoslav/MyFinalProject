@@ -3,7 +3,12 @@ from django.forms import *
 from accounts.models import *
 
 
-class ProfileProductModelForm(ModelForm):
+class UserProductModelForm(ModelForm):
     class Meta:
-        model = ProfileProduct
+        model = UserProduct
         fields = ['quantity']
+
+class OrderModelForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['delivery_address']

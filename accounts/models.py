@@ -7,7 +7,7 @@ from store.models import Category, Product, Image
 
 
 class Profile(Model):
-    user = OneToOneField(User, on_delete=CASCADE, related_name='has_profile')
+    user = OneToOneField(User, on_delete=CASCADE, related_name='has_profile', null=True, blank=True)
     phone_number = CharField(max_length=15, null=True, blank=True)
     date_of_birth = DateField(null=True, blank=True)
     billing_address = TextField(null=True, blank=True)
@@ -25,21 +25,22 @@ class Profile(Model):
 
 
 class Order(Model):
-    profile = ForeignKey(Profile, on_delete=DO_NOTHING, related_name='orders')
-    delivery_address = TextField()
-    total = DecimalField(max_digits=10, decimal_places=2)
-    date_of_creation = DateTimeField(auto_now_add=True)
+    profile = ForeignKey(Profile, on_delete=DO_NOTHING, related_name='orders', null=True, blank=True)
+    delivery_address = TextField(default='Fill in this field only if it differs from the billing address')
+    total = DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    date_of_creation = DateTimeField(auto_now_add=False, null=True, blank=True, default=None)
 
     class Meta:
         ordering = ['date_of_creation', 'profile__user__last_name', 'profile__user__first_name']
 
     def __str__(self):
-        return (f'customer: {self.profile.user.last_name}{self.profile.user.first_name}, '
-                f'date of creation: {self.date_of_creation}')
+        return (f'Id: {self.id}, customer: {self.profile.user.first_name} {self.profile.user.last_name}, '
+                f'birthdate: {self.profile.date_of_birth}, billing address: {self.profile.billing_address},'
+                f'delivery address: {self.delivery_address}, date of creation: {self.date_of_creation}')
 
 
 class OrderProduct(Model):
-    order = ForeignKey(Order, on_delete=DO_NOTHING)
+    order = ForeignKey(Order, on_delete=CASCADE)
     product = ForeignKey(Product, on_delete=DO_NOTHING, related_name='related_order')
     quantity = IntegerField()
 
@@ -47,32 +48,16 @@ class OrderProduct(Model):
         ordering = ['order__date_of_creation', 'product__title']
 
     def __str__(self):
-        return f'{self.order}, item: {self.product}, quantity: {self.quantity}'
-
-    # def calculate_total(self):
-    #     total = 0
-    #     for item in {cart}:
-    #         total += item.price * cart[item]
-    #     return total
-    #
-    # def empty_cart(self):
-    #     cart = {}
-    #     return cart
-    #
-    # def add_number(self, number):
-    #     x=0
-    #     x+=number
-    #     return x
+        return f'id of the order: {self.order.id}, item: {self.product.title}, quantity: {self.quantity}'
 
 
-class ProfileProduct(Model):
-    profile = ForeignKey(Profile, on_delete=DO_NOTHING, related_name='containing')
+class UserProduct(Model):
+    user = ForeignKey(User, on_delete=DO_NOTHING, related_name='containing', null=True, blank=True)
     product = ForeignKey(Product, on_delete=DO_NOTHING, related_name='is_in')
     quantity = IntegerField(null=True, blank=True)
 
     class Meta:
-        ordering = ['profile__user__last_name', 'product__title']
+        ordering = ['user__last_name', 'product__title']
 
     def __str__(self):
-        return (f'Customer: {self.profile.user.last_name} {self.profile.user.last_name}'
-                f'item: {self.product.title}, quantity: {self.quantity}')
+        return f'username: {self.user}, item: {self.product.title}, quantity: {self.quantity}'

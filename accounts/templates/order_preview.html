@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+Order preview | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block content %}
+<div>Here is the summary of your order:</div>
+<ul>
+    {% for user_product in user_products %}
+    <li>item: {{user_product.product.title}}, price/pc: {{user_product.product.price}} £,
+        quantity: {{user_product.quantity}} pcs</li>
+    {% endfor %}
+</ul>
+<div>The order {{order.id}} is worth of {{order.total}} £</div>
+<div>Please, settle the amount mentioned above within 30 days after the creation of this order.
+    Transfer money to the following bank account: 18448885/455. Please, use your order id as the id of your payment.
+    Failing to comply with the stated deadline for payment will result in automatic
+    cancellation of your order.</div>
+<div>If you need, for whatever reason, cancel your order,
+    contact us either by phone (0456953128) or through e-mail (ondrej.hak@gmail.com)</div>
+<div><b>The information above is correct and fully understood</b></div>
+<div><a href="{% url 'order_confirmation' order.id %}" class="btn btn-success">Confirm & Complete the order</a></div>
+<div><a href="{% url 'order_decline' order.id %}" class="btn btn-secondary">Disagree, or Decline the order</a></div>
+{% endblock %}
+
+
+{% block content_2 %}
+
+{% endblock %}
