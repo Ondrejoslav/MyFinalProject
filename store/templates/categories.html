@@ -17,15 +17,22 @@ h1 {
 <h1 class='center'>Choose products from the following categories:</h1>
 <ul>
 {% for category in categories %}
-    <li class='comb'><a class='blacken' href = "{% url 'category' category.id %}">{{category}}</a></li>
+    <li class='comb'>
+        <a class='blacken' href = "{% url 'category' category.id %}">{{category}}</a>
+        {% if perms.store.change_category %}
+            <a href = "{% url 'category_update' category.id %}">✏️</a>
+        {% endif %}
+        {% if perms.store.delete_category %}
+            <a href = "{% url 'category_delete' category.id %}">❌</a>
+        {% endif %}
+    </li>
 {% endfor %}
 </ul>
 {% endblock %}
 
 
 {% block content_2 %}
-<!--
-<div><a href = "{% url 'products_and_categories' %}">List of products sorted by categories</a></div>
-<div><a href = "{% url 'home' %}">Home</a></div>
--->
+{% if perms.store.add_category %}
+    <div><a href = "{% url 'category_create' %}" class="btn btn-primary">Add a category</a></div>
+{% endif %}
 {% endblock %}

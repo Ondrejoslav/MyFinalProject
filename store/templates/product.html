@@ -34,9 +34,12 @@
 
 {% block content_2 %}
 <div id='d'>Back to category:  <a class='blacken' href = "{% url 'category' product.category.id %}">{{product.category.title}}</a></div>
-<!--
-<div><a href = "{% url 'categories' %}">List of categories</a></div>
-<div><a href = "{% url 'products_and_categories' %}">List of products sorted by categories</a></div>
-<div><a href = "{% url 'home' %}">Home</a></div>
--->
+<div>
+  {% if perms.store.change_product %}
+    <a href = "{% url 'product_update' product.id %}">✏️</a>
+  {% endif %}
+  {% if perms.store.delete_product %}
+    <a href = "{% url 'product_delete' product.id %}">❌</a>
+  {% endif %}
+</div>
 {% endblock %}

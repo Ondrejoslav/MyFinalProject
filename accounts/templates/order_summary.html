@@ -6,21 +6,37 @@ Order summary | Laboratory Glassware Store
 
 
 {% block style %}
+h5 {
+  margin-top: 20px;
+}
 {% endblock %}
 
 
 {% block content %}
-<div><b>Here is the summary of your order nr. {{ order.id }}:</b></div>
+<h3><b>Here is the summary of your order nr. {{ order.id }}:</b></h3>
+
 <ul>
     {% for order_product in order_products %}
     <li>item: {{order_product.product.title}}, price/pc: {{order_product.product.price}} £,
         quantity: {{order_product.quantity}} pcs</li>
     {% endfor %}
 </ul>
-<div>The order {{order.id}} was created on {{order.date_of_creation|date:"d-m-Y"}} at
+<div>The order was created on {{order.date_of_creation|date:"d-m-Y"}} at
     {{order.date_of_creation|date:"H:i:s"}} and is worth of {{order.total}} £</div>
-<div>Delivery address: {{order.delivery_address}}</div>
-<div><b>Payment details</b></div>
+
+<h5><b>Your personal info</b></h5>
+<div>Name: {{order.profile.user.first_name}}{{order.profile.user.last_name}}</div>
+<div>Date of birth: {{order.profile.date_of_birth}}</div>
+
+<h5><b>Your contact details</b></h5>
+<div>Billing address: {{order.profile.billing_address}}</div>
+<div>E-mail: {{order.profile.user.email}}</div>
+<div>Phone number: {{order.profile.phone_number}}</div>
+
+<h5><b>Delivery address</b></h5>
+<div>{{order.delivery_address}}</div>
+
+<h5><b>Payment details</b></h5>
 <div>Amount: {{ order.total }} £</div>
 <div>bank account: 18448885/455</div>
 <div>Id of the payment: {{ order.id }}</div>

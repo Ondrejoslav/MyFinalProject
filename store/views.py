@@ -1,11 +1,11 @@
 from concurrent.futures._base import LOGGER
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView, UpdateView
 
-# from store.forms import CustomerModelForm
+from store.forms import *
 from store.models import *
 
 
@@ -42,19 +42,73 @@ def products_and_categories(request):
 
 
 def product(request, pk):
-    if Product.objects.filter(id=pk).exists():
+    if Product.objects.filter(pk=pk).exists():
         product = Product.objects.get(pk=pk)
         context = {'product': product}
         return render(request, 'product.html', context)
     return products(request)
 
 
-# class CustomerCreateView(LoginRequiredMixin, CreateView):
-#     template_name = 'form.html'
-#     form_class = CustomerModelForm
-#     success_url = reverse_lazy('home')
-#
-#     def form_invalid(self, form):
-#         LOGGER.warning('User provided invalid data.')
-#         return super().form_invalid(form)
-#
+class StaffRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class CategoryCreateView(PermissionRequiredMixin, CreateView):
+    template_name = 'form.html'
+    form_class = CategoryModelForm
+    success_url = reverse_lazy('categories')
+    permission_required = 'store.add_category'
+
+    def form_invalid(self, form):
+        LOGGER.warning('User provided invalid data.')
+        return super().form_invalid(form)
+
+
+class CategoryUpdateView(PermissionRequiredMixin, UpdateView):
+    template_name = 'form.html'
+    model = Category
+    form_class = CategoryModelForm
+    success_url = reverse_lazy('categories')
+    permission_required = 'store.change_category'
+
+    def form_invalid(self, form):
+        LOGGER.warning('User provided invalid data.')
+        return super().form_invalid(form)
+
+
+class CategoryDeleteView(StaffRequiredMixin, PermissionRequiredMixin, DeleteView):
+    template_name = 'category_confirm_delete.html'
+    model = Category
+    success_url = reverse_lazy('categories')
+    permission_required = 'store.delete_category'
+
+
+class ProductCreateView(PermissionRequiredMixin, CreateView):
+    template_name = 'form.html'
+    form_class = ProductModelForm
+    success_url = reverse_lazy('products')
+    permission_required = 'store.add_product'
+
+    def form_invalid(self, form):
+        LOGGER.warning('User provided invalid data.')
+        return super().form_invalid(form)
+
+
+class ProductUpdateView(PermissionRequiredMixin, UpdateView):
+    template_name = 'form.html'
+    model = Product
+    form_class = ProductModelForm
+    success_url = reverse_lazy('products')
+    permission_required = 'store.change_product'
+
+    def form_invalid(self, form):
+        LOGGER.warning('User provided invalid data.')
+        return super().form_invalid(form)
+
+
+class ProductDeleteView(StaffRequiredMixin, PermissionRequiredMixin, DeleteView):
+    template_name = 'product_confirm_delete.html'
+    model = Product
+    success_url = reverse_lazy('products')
+    permission_required = 'store.delete_product'

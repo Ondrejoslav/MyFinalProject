@@ -15,6 +15,12 @@ Your cart | Laboratory Glassware Store
   margin: 50px 0px 20px 20px;
   font-size: 25px;
 }
+#c {
+  color: red;
+}
+#d {
+  font-style: italic;
+}
 {% endblock %}
 
 
@@ -35,7 +41,11 @@ Your cart | Laboratory Glassware Store
     </li>
     {% endfor %}
 </ul>
+
+<div id="c">{{notice_a}}<span id="d">{{exceeds_number}}</span>{{notice_b}}</div>
+
 <div id="b"><b>Total = {{total}} £</b></div>
+
 <div>
         <a href="{% url 'products_and_categories' %}" class="btn btn-primary">Add product</a>
         <a href="{% url 'place_order' %}" class="btn btn-success">Place order</a>

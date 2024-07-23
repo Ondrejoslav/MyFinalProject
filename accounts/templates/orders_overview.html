@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Orders Overview | Laboratory Glassware Store
+{% endblock %}
+
+
+{% block style %}
+{% endblock %}
+
+
+{% block content %}
+<div>Dear {{user.first_name}}, these are orders from all our customers:</div>
+<ul>
+    {% for order in all_orders %}
+    <li><a href="{% url 'order_summary' order.id %}">Id: {{order.id}}, date and time of creation:
+        {{order.date_of_creation|date:"d-m-Y"}} at {{order.date_of_creation|date:"H:i:s"}},
+        worth of: {{order.total}} £</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+{% block content_2 %}
+
+{% endblock %}

@@ -36,11 +36,26 @@ Products and categories overview | Laboratory Glassware Store
   <a id='d' href="{% url 'products' %}">Alphabetical ordering</a></span></h3>
 <ul>
   {% for category in categories %}
-  <li class='comb' id='e'><a class='blacken' id='f' href = "{% url 'category' category.id %}">{{ category.title }}</a>
+  <li class='comb' id='e'>
+    <a class='blacken' id='f' href = "{% url 'category' category.id %}">{{ category.title }}</a>
+    {% if perms.store.change_category %}
+      <a href = "{% url 'category_update' category.id %}">✏️</a>
+    {% endif %}
+    {% if perms.store.delete_category %}
+      <a href = "{% url 'category_delete' category.id %}">❌</a>
+    {% endif %}
   <ul>
     {% for product in products %}
       {% if product.category == category %}
-    <li class='comb' id='g'><a class='blacken' href = "{% url 'product' product.id %}">{{ product.title }}</a></li>
+        <li class='comb' id='g'>
+          <a class='blacken' href = "{% url 'product' product.id %}">{{ product.title }}</a>
+          {% if perms.store.change_product %}
+            <a href = "{% url 'product_update' product.id %}">✏️</a>
+          {% endif %}
+          {% if perms.store.delete_product %}
+            <a href = "{% url 'product_delete' product.id %}">❌</a>
+          {% endif %}
+        </li>
       {% endif %}
     {% endfor %}
   </ul>
@@ -51,9 +66,12 @@ Products and categories overview | Laboratory Glassware Store
 
 
 {% block content_2 %}
-<!--
-<div><a href = "{% url 'categories' %}">List of categories</a></div>
-<div><a href = "{% url 'products' %}">All the products ordered alphabetically</a></div>
-<div><a href = "{% url 'home' %}">Home</a></div>
--->
+<div>
+{% if perms.store.add_category %}
+  <a href = "{% url 'category_create' %}" class="btn btn-primary">Add a category</a>
+{% endif %}
+{% if perms.store.add_product %}
+  <a href = "{% url 'product_create' %}" class="btn btn-primary">Add a product</a>
+{% endif %}
+</div>
 {% endblock %}

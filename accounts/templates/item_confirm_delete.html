@@ -14,6 +14,7 @@ Removing Item Confirmation | Laboratory Glassware Store
     {% csrf_token %}
     <p>Are you sure you want to delete item "{{ object }}" from the shopping cart?</p>
     <input type="submit" value="Submit" class="btn btn-danger">
+    <button type="button" onclick="history.back();" class="btn btn-primary">Back</button>
 </form>
 {% endblock %}
 

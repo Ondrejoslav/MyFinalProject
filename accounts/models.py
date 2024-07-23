@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Model, OneToOneField, CASCADE, TextField, DateField, CharField, BooleanField, \
-    DateTimeField, ForeignKey, DO_NOTHING, DecimalField, IntegerField
+    DateTimeField, ForeignKey, DO_NOTHING, DecimalField, IntegerField, PositiveIntegerField
 
 from store.models import Category, Product, Image
 
@@ -54,7 +54,7 @@ class OrderProduct(Model):
 class UserProduct(Model):
     user = ForeignKey(User, on_delete=DO_NOTHING, related_name='containing', null=True, blank=True)
     product = ForeignKey(Product, on_delete=DO_NOTHING, related_name='is_in')
-    quantity = IntegerField(null=True, blank=True)
+    quantity = PositiveIntegerField(null=True, blank=True)
 
     class Meta:
         ordering = ['user__last_name', 'product__title']

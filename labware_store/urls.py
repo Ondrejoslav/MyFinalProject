@@ -28,20 +28,24 @@ urlpatterns = [
 
     path('', home, name='home'),
     path('categories/', categories, name='categories'),
+    path('category/create/', CategoryCreateView.as_view(), name='category_create'),
+    path('category/update/<pk>/', CategoryUpdateView.as_view(), name='category_update'),
+    path('category/delete/<pk>/', CategoryDeleteView.as_view(), name='category_delete'),
     path('category/<pk>/', category, name='category'),
     path('products/', products, name='products'),
     path('products_and_categories/', products_and_categories, name='products_and_categories'),
+    path('product/create/', ProductCreateView.as_view(), name='product_create'),
+    path('product/update/<pk>/', ProductUpdateView.as_view(), name='product_update'),
+    path('product/delete/<pk>/', ProductDeleteView.as_view(), name='product_delete'),
     path('product/<pk>/', product, name='product'),
-    # path('customer/create/', CustomerCreateView.as_view(), name='register_customer'),
 
     # path('accounts/login/', LoginView.as_view(), name='login'),
     path('accounts/login/', SubmittableLoginView.as_view(), name='login'), # customized login view
     path('accounts/signup/', SignUpView.as_view(), name='signup'), # customized signup view
-    # path('accounts/profile/', SignUpView.as_view(), name='profile'),
-    path('accounts/users/', users, name='users'),
-    path('accounts/user/', user, name='user'),
     path('accounts/password_change/', SubmittablePasswordChangeView.as_view(), name='password_change'), # customized password change view
     path('accounts/', include('django.contrib.auth.urls')), # django default views
+    path('accounts/users/', users, name='users'),
+    path('accounts/user/', user, name='user'),
     path('accounts/add_to_cart/<pk>/', add_to_cart, name='add_to_cart'),
     path('accounts/update_item/<pk>/', ItemUpdateView.as_view(), name='update_item'),
     path('accounts/discard_item/<pk>/', discard_item, name='discard_item'),
@@ -57,4 +61,5 @@ urlpatterns = [
     path('accounts/order_decline/<pk>/', order_decline, name='order_decline'),
     path('accounts/order/<pk>/', order_summary, name='order_summary'),
     path('accounts/orders/', your_orders, name='your_orders'),
+    path('accounts/all_orders/', OrdersListView.as_view(), name='all_orders'),
 ]

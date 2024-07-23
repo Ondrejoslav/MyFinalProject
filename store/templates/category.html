@@ -17,16 +17,27 @@ h1 {
 <h1 class='center'>List of products from category '{{category.title}}'</h1>
 <ul>
 {% for product in products %}
-    <li class='comb'><a class='blacken' href = "{% url 'product' product.id %}">{{ product.title }}</a></li>
+    <li class='comb'>
+        <a class='blacken' href = "{% url 'product' product.id %}">{{ product.title }}</a>
+        {% if perms.store.change_product %}
+            <a href = "{% url 'category_update' product.id %}">✏️</a>
+        {% endif %}
+        {% if perms.store.delete_product %}
+            <div><a href = "{% url 'category_delete' product.id %}">❌</a></div>
+        {% endif %}
+    </li>
 {% endfor %}
 </ul>
 {% endblock %}
 
 
 {% block content_2 %}
-<!--
-<div><a href = "{% url 'categories' %}">List of categories</a></div>
-<div><a href = "{% url 'products_and_categories' %}">List of products sorted by categories</a></div>
-<div><a href = "{% url 'home' %}">Home</a></div>
--->
+<div>
+{% if perms.store.change_category %}
+    <a href = "{% url 'category_update' category.id %}" class="btn btn-primary">Edit</a>
+{% endif %}
+{% if perms.store.delete_category %}
+    <a href = "{% url 'category_delete' category.id %}" class="btn btn-danger">Delete</a>
+{% endif %}
+</div>
 {% endblock %}
