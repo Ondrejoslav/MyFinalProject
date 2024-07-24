@@ -15,11 +15,13 @@ Including another URLconf
 """
 from itertools import product
 
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.urls import path, include
 
 from accounts.views import *
+from labware_store import settings
 from store.views import *
 from store.forms import *
 
@@ -62,4 +64,4 @@ urlpatterns = [
     path('accounts/order/<pk>/', order_summary, name='order_summary'),
     path('accounts/orders/', your_orders, name='your_orders'),
     path('accounts/all_orders/', OrdersListView.as_view(), name='all_orders'),
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

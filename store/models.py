@@ -1,4 +1,5 @@
 from django.db.models import *
+#from accounts.models import *
 
 
 class Category(Model):
@@ -15,12 +16,14 @@ class Category(Model):
         return self.title
 
 
+
 class Product(Model):
     title = CharField(max_length=50)
     category = ForeignKey(Category, on_delete=DO_NOTHING)
     description = TextField()
     price = DecimalField(max_digits=10, decimal_places=2)
     stock = IntegerField()
+    #image = ForeignKey(Image, on_delete=DO_NOTHING)
 
     class Meta:
         ordering = ['title']
@@ -33,6 +36,12 @@ class Product(Model):
 
 
 class Image(Model):
-    product = ForeignKey(Product, on_delete=CASCADE)
-    image = ImageField()
-    description = TextField()
+    image = ImageField(upload_to='images/', default=None, null=False, blank=False)
+    product = ForeignKey(Product, on_delete=DO_NOTHING, null=True, blank=True)
+    description = TextField(null=True, blank=True)
+
+    def __repr__(self):
+        return f'Image(image = {self.image}, description = {self.description})'
+
+    def __str__(self):
+        return f'Image: {self.image}, {self.description}'

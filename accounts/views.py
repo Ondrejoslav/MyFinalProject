@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from concurrent.futures._base import LOGGER
 
 from django.contrib.auth.decorators import login_required
@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.auth.views import LoginView, PasswordChangeView
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ValidationError
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.db.transaction import atomic
 from django.forms import DateField, CharField, Textarea, NumberInput, ModelForm, IntegerField, Form
@@ -31,6 +31,12 @@ class SignUpForm(UserCreationForm):
     phone_number = CharField(label = 'Phone number')
     date_of_birth = DateField(widget=NumberInput(attrs={'type': 'date'}))
     billing_address = CharField(label='Billing address', widget=Textarea)
+
+    def validate(self, date_of_birth):
+        super().validate(date_of_birth)
+        if date_of_birth >= date.today():
+            raise ValidationError('Only past dates are allowed!')
+
 
     @atomic
     def save(self, commit=True):

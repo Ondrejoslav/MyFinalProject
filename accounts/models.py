@@ -1,9 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Model, OneToOneField, CASCADE, TextField, DateField, CharField, BooleanField, \
-    DateTimeField, ForeignKey, DO_NOTHING, DecimalField, IntegerField, PositiveIntegerField
+    DateTimeField, ForeignKey, DO_NOTHING, DecimalField, IntegerField, PositiveIntegerField, ImageField
 
-from store.models import Category, Product, Image
+from store.models import Category, Product
 
 
 class Profile(Model):
@@ -61,3 +61,5 @@ class UserProduct(Model):
 
     def __str__(self):
         return f'username: {self.user}, item: {self.product.title}, quantity: {self.quantity}'
+
+
