@@ -7,7 +7,7 @@ from store.models import Category, Product
 
 
 class Profile(Model):
-    user = OneToOneField(User, on_delete=CASCADE, related_name='has_profile', null=True, blank=True)
+    user = OneToOneField(User, on_delete=CASCADE, null=True, blank=True)
     phone_number = CharField(max_length=15, null=True, blank=True)
     date_of_birth = DateField(null=True, blank=True)
     billing_address = TextField(null=True, blank=True)
@@ -25,7 +25,7 @@ class Profile(Model):
 
 
 class Order(Model):
-    profile = ForeignKey(Profile, on_delete=DO_NOTHING, related_name='orders', null=True, blank=True)
+    profile = ForeignKey(Profile, on_delete=DO_NOTHING, null=True, blank=True)
     delivery_address = TextField(default='Fill in this field only if it differs from the billing address')
     total = DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     date_of_creation = DateTimeField(auto_now_add=False, null=True, blank=True, default=None)
@@ -41,7 +41,7 @@ class Order(Model):
 
 class OrderProduct(Model):
     order = ForeignKey(Order, on_delete=CASCADE)
-    product = ForeignKey(Product, on_delete=DO_NOTHING, related_name='related_order')
+    product = ForeignKey(Product, on_delete=DO_NOTHING)
     quantity = IntegerField()
 
     class Meta:
@@ -52,8 +52,8 @@ class OrderProduct(Model):
 
 
 class UserProduct(Model):
-    user = ForeignKey(User, on_delete=DO_NOTHING, related_name='containing', null=True, blank=True)
-    product = ForeignKey(Product, on_delete=DO_NOTHING, related_name='is_in')
+    user = ForeignKey(User, on_delete=DO_NOTHING, null=True, blank=True)
+    product = ForeignKey(Product, on_delete=DO_NOTHING)
     quantity = PositiveIntegerField(null=True, blank=True)
 
     class Meta:

@@ -20,26 +20,41 @@
 #d {
   font-size: 30px;
 }
+#e {
+  margin-top: 15px;
+}
+#f {
+  margin-left: 100px;
+}
+#g, #h  {
+  margin: 0px 50px;
+}
 {% endblock %}
 
 
 {% block content %}
 <h1 class='center'>{{ product.title }}</h1>
+<div><img src="{{ product.image }}"></div>
 <div class='a'><span id='b'>Product features</span><br>{{ product.description }}</div>
 <div class='a'><span class='c'>Price:</span> {{ product.price }} £</div>
 <div class='a'><span class='c'>Stock:</span> {{ product.stock }} pcs</div>
-<div><a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to cart</a></div>
+<div>
+  {% if not user.is_staff %}
+    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-success" id="f">Add to cart</a>
+  {% endif %}
+</div>
+
+<div id="e">
+  {% if perms.store.change_product %}
+    <a href = "{% url 'product_update' product.id %}" id="g" class="btn btn-primary">Edit️</a>
+  {% endif %}
+  {% if perms.store.delete_product %}
+    <a href = "{% url 'product_delete' product.id %}" id="g" class="btn btn-danger">Delete</a>
+  {% endif %}
+</div>
 {% endblock %}
 
 
 {% block content_2 %}
 <div id='d'>Back to category:  <a class='blacken' href = "{% url 'category' product.category.id %}">{{product.category.title}}</a></div>
-<div>
-  {% if perms.store.change_product %}
-    <a href = "{% url 'product_update' product.id %}">✏️</a>
-  {% endif %}
-  {% if perms.store.delete_product %}
-    <a href = "{% url 'product_delete' product.id %}">❌</a>
-  {% endif %}
-</div>
 {% endblock %}

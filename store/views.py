@@ -85,7 +85,7 @@ class CategoryDeleteView(StaffRequiredMixin, PermissionRequiredMixin, DeleteView
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
-    template_name = 'form.html'
+    template_name = 'form_image.html'
     form_class = ProductModelForm
     success_url = reverse_lazy('products')
     permission_required = 'store.add_product'
@@ -96,7 +96,7 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
 
 
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
-    template_name = 'form.html'
+    template_name = 'form_image.html'
     model = Product
     form_class = ProductModelForm
     success_url = reverse_lazy('products')

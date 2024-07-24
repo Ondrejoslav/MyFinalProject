@@ -32,11 +32,12 @@ class SignUpForm(UserCreationForm):
     date_of_birth = DateField(widget=NumberInput(attrs={'type': 'date'}))
     billing_address = CharField(label='Billing address', widget=Textarea)
 
-    def validate(self, date_of_birth):
-        super().validate(date_of_birth)
+    def clean(self):
+        initial_data = super().clean()
+        date_of_birth = initial_data.get('date_of_birth')
         if date_of_birth >= date.today():
             raise ValidationError('Only past dates are allowed!')
-
+        return initial_data
 
     @atomic
     def save(self, commit=True):

@@ -16,6 +16,17 @@ class Category(Model):
         return self.title
 
 
+class Image(Model):
+    image = ImageField(upload_to='images/', default='default_image.png', null=False, blank=False)
+    # product = ForeignKey(Product, on_delete=DO_NOTHING, null=True, blank=True)
+    description = TextField(null=True, blank=True)
+
+    def __repr__(self):
+        return f'Image(image = {self.image}, description = {self.description})'
+
+    def __str__(self):
+        return f'Image: {self.image}, {self.description}'
+
 
 class Product(Model):
     title = CharField(max_length=50)
@@ -23,7 +34,7 @@ class Product(Model):
     description = TextField()
     price = DecimalField(max_digits=10, decimal_places=2)
     stock = IntegerField()
-    #image = ForeignKey(Image, on_delete=DO_NOTHING)
+    image = ForeignKey(Image, on_delete=DO_NOTHING, null=True, blank=True)
 
     class Meta:
         ordering = ['title']
@@ -35,13 +46,3 @@ class Product(Model):
         return f'{self.title} ({self.category})'
 
 
-class Image(Model):
-    image = ImageField(upload_to='images/', default=None, null=False, blank=False)
-    product = ForeignKey(Product, on_delete=DO_NOTHING, null=True, blank=True)
-    description = TextField(null=True, blank=True)
-
-    def __repr__(self):
-        return f'Image(image = {self.image}, description = {self.description})'
-
-    def __str__(self):
-        return f'Image: {self.image}, {self.description}'

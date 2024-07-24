@@ -24,11 +24,11 @@ h5 {
 <div>The order was created on {{order.date_of_creation|date:"d-m-Y"}} at
     {{order.date_of_creation|date:"H:i:s"}} and is worth of {{order.total}} £</div>
 
-<h5><b>Your personal info</b></h5>
+<h5><b>Customer</b></h5>
 <div>Name: {{order.profile.user.first_name}}{{order.profile.user.last_name}}</div>
 <div>Date of birth: {{order.profile.date_of_birth}}</div>
 
-<h5><b>Your contact details</b></h5>
+<h5><b>Customer's contact details</b></h5>
 <div>Billing address: {{order.profile.billing_address}}</div>
 <div>E-mail: {{order.profile.user.email}}</div>
 <div>Phone number: {{order.profile.phone_number}}</div>
