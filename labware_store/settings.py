@@ -40,10 +40,12 @@ INSTALLED_APPS = [
 
     # Externally installed apps
     'django_dump_load_utf8',
+    'rest_framework',
 
     # My_apps
     'store',
     'accounts',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +138,10 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '')
 MEDIA_URL = 'images/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
+}

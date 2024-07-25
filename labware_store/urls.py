@@ -13,17 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from itertools import product
 
+import rest_framework
 from django.conf.urls.static import static
+
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.urls import path, include
 
+import api
+from api.views import *
 from accounts.views import *
 from labware_store import settings
 from store.views import *
-from store.forms import *
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -64,4 +67,10 @@ urlpatterns = [
     path('accounts/order/<pk>/', order_summary, name='order_summary'),
     path('accounts/orders/', your_orders, name='your_orders'),
     path('accounts/all_orders/', OrdersListView.as_view(), name='all_orders'),
+
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/products/', api.views.Products.as_view()),
+    path('api/product/<pk>/', api.views.ProductDetail.as_view()),
+    path('api/categories/', api.views.Categories.as_view()),
+    path('api/category/<pk>/', api.views.CategoryDetail.as_view()),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
