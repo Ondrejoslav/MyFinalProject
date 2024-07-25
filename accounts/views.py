@@ -14,7 +14,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, FormView, UpdateView, DeleteView, ListView
 
-from accounts.forms import UserProductModelForm, OrderModelForm
+from accounts.forms import *
 from accounts.models import Profile, Order, UserProduct, OrderProduct
 from store.models import Product
 from store.views import product
@@ -38,6 +38,7 @@ class SignUpForm(UserCreationForm):
         if date_of_birth >= date.today():
             raise ValidationError('Only past dates are allowed!')
         return initial_data
+
 
     @atomic
     def save(self, commit=True):
