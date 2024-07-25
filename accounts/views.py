@@ -8,7 +8,6 @@ from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.db.transaction import atomic
 from django.forms import DateField, CharField, Textarea, NumberInput, ModelForm, IntegerField, Form
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -17,41 +16,10 @@ from django.views.generic import CreateView, DetailView, FormView, UpdateView, D
 from accounts.forms import *
 from accounts.models import Profile, Order, UserProduct, OrderProduct
 from store.models import Product
-from store.views import product
 
 
 class SubmittableLoginView(LoginView):
     template_name = 'registration/login.html'
-
-
-class SignUpForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        fields = ['username','first_name', 'last_name', 'email', 'password1', 'password2']
-
-    phone_number = CharField(label = 'Phone number')
-    date_of_birth = DateField(widget=NumberInput(attrs={'type': 'date'}))
-    billing_address = CharField(label='Billing address', widget=Textarea)
-
-    def clean(self):
-        initial_data = super().clean()
-        date_of_birth = initial_data.get('date_of_birth')
-        if date_of_birth >= date.today():
-            raise ValidationError('Only past dates are allowed!')
-        return initial_data
-
-
-    @atomic
-    def save(self, commit=True):
-        self.instance.is_active = True
-        user = super().save(commit)
-        phone_number = self.cleaned_data['phone_number']
-        date_of_birth = self.cleaned_data['date_of_birth']
-        billing_address = self.cleaned_data['billing_address']
-        profile = Profile(user=user, phone_number=phone_number,
-                          date_of_birth=date_of_birth, billing_address=billing_address)
-        if commit:
-            profile.save()
-        return user
 
 
 class SignUpView(CreateView):
