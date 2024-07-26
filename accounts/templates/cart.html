@@ -21,11 +21,21 @@ Your cart | Laboratory Glassware Store
 #d {
   font-style: italic;
 }
+#e {
+  color: red;
+  font-size: 20px;
+  margin-top: 30px;
+}
 {% endblock %}
 
 
 {% block content %}
 <h1>The content of your cart is following:</h1>
+{% if not user.is_authenticated %}
+<div id="e">==This e-shop is just starting and some key functionalities has not been implemented yet.
+    At this stage, you need to sign up first before you start making shopping.
+    Sorry for this temporary inconvenience!==</div>
+{% endif %}
 <ul>
     {% for user_product in user_products %}
     <li>
@@ -47,9 +57,16 @@ Your cart | Laboratory Glassware Store
 <div id="b"><b>Total = {{total}} £</b></div>
 
 <div>
+    {% if user.is_authenticated %}
         <a href="{% url 'products_and_categories' %}" class="btn btn-primary">Add product</a>
         <a href="{% url 'place_order' %}" class="btn btn-success">Place order</a>
         <a href="{% url 'cart_confirm_delete' %}" class="btn btn-danger">Empty cart</a>
+    {% endif %}
+    {% if not user.is_authenticated %}
+        <button class="btn btn-primary">Add product</button>
+        <button class="btn btn-success">Place order</button>
+        <button class="btn btn-danger">Empty cart</button>
+    {% endif %}
 </div>
 {% endblock %}
 

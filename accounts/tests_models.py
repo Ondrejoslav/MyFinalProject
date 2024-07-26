@@ -66,15 +66,17 @@ class MovieModelTest(TestCase):
         profile_3.save()
         profile_4.save()
 
+        category_1 = Category.objects.create(title='Category_1')
+        category_2 = Category.objects.create(title='Category_2')
+        category_3 = Category.objects.create(title='Category_3')
+
         order_1 = Order.objects.create(
-            profile=profile_3,
             delivery_address='delivery_address1',
             total="22.48",
             date_of_creation=datetime.date(2024, 3, 10),
         )
 
         order_2 = Order.objects.create(
-            profile=profile_3,
             delivery_address='delivery_address2',
             total="120.88",
             date_of_creation=datetime.date(2023, 10, 28),
@@ -82,50 +84,66 @@ class MovieModelTest(TestCase):
 
         order_1.profile = profile_3
         order_1.save()
-        order_2.profile = profile_3
+        order_2.profile = profile_2
         order_2.save()
 
-        # product_1 = Product.objects.create(
-        #     title="Product 1",
-        #     price="2.48",
-        #     stock=30
-        # )
-        #
-        # product_2 = Product.objects.create(
-        #     title="Product 2",
-        #     price="3.68",
-        #     stock=50
-        # )
-        #
-        # order_product_1 = OrderProduct.objects.create(
-        #     order=order_1,
-        #     # product='product_1',
-        #     quantity="10",
-        # )
-        #
-        # order_product_2 = OrderProduct.objects.create(
-        #     order=order_1,
-        #     # product='product_2',
-        #     quantity="20",
-        # )
-        #
-        # order_product_3 = OrderProduct.objects.create(
-        #     order=order_1,
-        #     # product='product_4',
-        #     quantity="20",
-        # )
-        #
-        # order_product_4 = OrderProduct.objects.create(
-        #     order=order_2,
-        #     # product='product_3',
-        #     quantity="20",
-        # )
-        #
-        # order_product_5 = OrderProduct.objects.create(
-        #     order=order_2,
-        #     # product='product_2',
-        #     quantity="20",
-        # )
+        product_1 = Product.objects.create(
+            title="Product 1",
+            category=category_1,
+            price="2.48",
+            stock=30
+        )
+
+        product_2 = Product.objects.create(
+            title="Product_2",
+            category=category_1,
+            price="3.68",
+            stock=50
+        )
+
+        product_3 = Product.objects.create(
+            title="Product_3",
+            category=category_2,
+            price="3.68",
+            stock=60
+        )
+
+        product_4 = Product.objects.create(
+            title="Product_4",
+            category=category_3,
+            price="3.68",
+            stock=10
+        )
+
+        order_product_1 = OrderProduct.objects.create(
+            order=order_1,
+            product=product_1,
+            quantity="10",
+        )
+
+        order_product_2 = OrderProduct.objects.create(
+            order=order_1,
+            product=product_2,
+            quantity="20",
+        )
+
+        order_product_3 = OrderProduct.objects.create(
+            order=order_1,
+            product=product_4,
+            quantity="20",
+        )
+
+        order_product_4 = OrderProduct.objects.create(
+            order=order_2,
+            product=product_3,
+            quantity="20",
+        )
+
+        order_product_5 = OrderProduct.objects.create(
+            order=order_2,
+            product=product_2,
+            quantity="20",
+        )
 
 
     def setUp(self):
@@ -150,10 +168,26 @@ class MovieModelTest(TestCase):
         profile_3 = Profile.objects.get(id=3)
         orders_count = Order.objects.filter(profile=profile_3).count()
         print(f"test_profile_orders_count: {orders_count}")
-        self.assertEqual(orders_count, 2)
+        self.assertEqual(orders_count, 1)
+
+    def test_order_products_count(self):
+        order = Order.objects.get(id=1)
+        order_product_count = OrderProduct.objects.filter(order=order).count()
+        print(f"test_order_products_count: '{order_product_count}'")
+        self.assertEqual(order_product_count, 3)
+
+    def test_order_name(self):
+        order = Order.objects.get(id=1)
+        order_name = order.profile.user.first_name
+        print(f"test_order_products_count: '{order_name}'")
+        self.assertEqual(order_name, 'name3')
 
     def test_profile_str(self):
         profile = Profile.objects.get(id=3)
         print(f"test_profile_str: '{profile.__str__()}'")
         self.assertEqual(profile.__str__(), "surname3 name3")
 
+    def order_product_str(self):
+        order_product = OrderProduct.objects.get(id=2)
+        print(f"test_order_product_str: '{order_product.__str__()}'")
+        self.assertEqual(order_product.__str__(), "id of the order: 1, item: Product_2, quantity: 20")

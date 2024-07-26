@@ -36,9 +36,15 @@
                     {% endif %}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item text-right" href="{% url 'logout' %}">Logout</a>
-                    <a class="dropdown-item text-right" href="{% url 'password_change' %}">Change password</a>
-                    <a class="dropdown-item text-right" href="{% url 'user' %}">View your profile</a>
+                    <form method="post" type="button" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <div class="dropdown-item text-right"><button class="btn btn-default">
+                            Logout</button></div>
+                    </form>
+                    <div class="dropdown-item text-right"><a href="{% url 'password_change' %}" class="btn btn-default">
+                        Change password</a></div>
+                    <div class="dropdown-item text-right"><a href="{% url 'user' %}" class="btn btn-default">
+                        View your profile</a></div>
                 </div>
                 {% else %}
                 <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">

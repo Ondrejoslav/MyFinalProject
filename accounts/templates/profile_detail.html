@@ -23,5 +23,7 @@ Profile overview | Laboratory Glassware Store
 
 
 {% block content_2 %}
-<div>Go to the list of <a href="{% url 'users' %}">profiles</a></div>
+  {% if user.is_staff %}
+    <div>Go to the list of <a href="{% url 'users' %}">profiles</a></div>
+  {% endif %}
 {% endblock %}

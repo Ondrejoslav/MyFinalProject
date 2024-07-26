@@ -21,7 +21,7 @@ class ProductModelForm(ModelForm):
 
     def clean_title(self):
         initial_title = self.cleaned_data['title']
-        return (" ".join(initial_title.split())).title()
+        return (" ".join(initial_title.split())).capitalize()
 
     def clean_description(self):
         # Force each sentence of the description to be capitalized.

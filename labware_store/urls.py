@@ -44,17 +44,15 @@ urlpatterns = [
     path('product/delete/<pk>/', ProductDeleteView.as_view(), name='product_delete'),
     path('product/<pk>/', product, name='product'),
 
-    # path('accounts/login/', LoginView.as_view(), name='login'),
-    path('accounts/login/', SubmittableLoginView.as_view(), name='login'), # customized login view
-    path('accounts/signup/', SignUpView.as_view(), name='signup'), # customized signup view
-    path('accounts/password_change/', SubmittablePasswordChangeView.as_view(), name='password_change'), # customized password change view
-    path('accounts/', include('django.contrib.auth.urls')), # django default views
+    path('accounts/login/', SubmittableLoginView.as_view(), name='login'),
+    path('accounts/signup/', SignUpView.as_view(), name='signup'),
+    path('accounts/password_change/', SubmittablePasswordChangeView.as_view(), name='password_change'),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/users/', users, name='users'),
     path('accounts/user/', user, name='user'),
     path('accounts/add_to_cart/<pk>/', add_to_cart, name='add_to_cart'),
     path('accounts/update_item/<pk>/', ItemUpdateView.as_view(), name='update_item'),
     path('accounts/discard_item/<pk>/', discard_item, name='discard_item'),
-    # path('accounts/delete_item/<pk>/', ItemDeleteView.as_view(), name='delete_item'),
     path('accounts/remove_item_from_cart/<pk>/', remove_item_from_cart, name='remove_item_from_cart'),
     path('accounts/your_cart/', your_cart, name='your_cart'),
     path('accounts/cart_confirm_delete/', cart_confirm_delete, name='cart_confirm_delete'),
