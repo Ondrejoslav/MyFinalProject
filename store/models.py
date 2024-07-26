@@ -18,7 +18,6 @@ class Category(Model):
 
 class Image(Model):
     image = ImageField(upload_to='images/', default='default_image.png', null=False, blank=False)
-    # product = ForeignKey(Product, on_delete=DO_NOTHING, null=True, blank=True)
     description = TextField(null=True, blank=True)
 
     def __repr__(self):

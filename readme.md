@@ -1,32 +1,25 @@
-Add description of your project here, can contain images, e.g. ER diagram
+The project is about an online store specialised in laboratory glassware. It has been written in Django. 
+It consists of two externally developed applications, namely 'store' and 'accounts'. The former deals with content 
+of the shop (categories, products and their images) whereas the latter with customers and their actions (storing their
+personal data, filling up shopping carts and placing orders).
 
-Before the application is sent to the server, go into the settings.py file and change DEBUG from 'True' to 'False'
+To get a better idea about architecture of the project, I present here the corresponding ER diagram. 
+Three boxes on the right hand side represent application 'store' whereas the remainder represent application 'accounts'.
 
-When logging on an admin site, register models (each individually) in admin.py:
-admin.site.register(ModelName)
-(do not forget to import the models to be registered from models.py)
+![ER_diagram_final_project.png](ER_diagram_final_project.png)
 
-Use an internal Meta class (i.e. nested class of the class concerned) to automatically order a list of items of a given 
-category on the Django server
+After opening the project in a browser, the home page immediately loads up:
 
-In models.py add a function that calculates the total cost of a list of chosen products
-and updates the stock counts for them. When the order is placed, the total cost needs
-to be stored in the database, stock counts updated accordingly and the shopping cart emptied. 
-In the opposite scenario, when the shopping cart is not checked out within a certain time, 
-deleting its content and refreshing the stock counts to the original values.
+![img.png](img.png)
 
-Forms can be defined either in views.py or in another (independent) file like forms.py
 
-Consider using 'edit emojis' for updating and deleting forms
+The project is suited to any customer, no matter whether they or willing to register or not. However, as the project
+is not fully developed at the current stage (26/7/2024), some functionalities are missing. 
+Specifically, anonymous (not registered) cannot place orders. Yet they can still use their shopping cart. 
+For the reason of not getting them upset, the function of the shopping cart is temporarily disabled for them.
 
-Installing 'Pillow' module to enable working with ImageField
-
-In settings.py, when DEBUG = False, Django requires you to specify the hosts you will allow
-the Django project to run from.
-In production, 'ALLOWED_HOSTS' should be filled in with a proper domain name:
-ALLOWED_HOSTS = ['yourdomain.com']
-
-If possible, discuss the issues associated with styling of home.html
-
-In base.html, what is the purpose of {% if not view.is_popup %}{% endif %} enclosing the <nav> section?
-
+For a programmer, it is a good practice to predict potential issues with malfunctioning of the software and address them
+before they actually happen. A good example are errors caused by reloading a page at any stage of filling up the cart
+with products or at the subsequent checkout. Another good practice is to make sure that a customer cannot order a 
+particular product in a larger quantity than is actually available. They are given a proper notice before they place
+their order.
